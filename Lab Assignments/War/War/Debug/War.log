@@ -1,0 +1,22 @@
+﻿  stdafx.cpp
+  War.cpp
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(11): error C2065: 'Deck': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(11): error C2146: syntax error: missing ';' before identifier 'test'
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(11): error C2065: 'test': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(13): error C2065: 'test': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(13): error C2228: left of '.cardsLeft' must have class/struct/union
+  d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(13): note: type is 'unknown-type'
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(27): error C3646: 'deal': unknown override specifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(27): error C2059: syntax error: '('
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(28): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(51): error C3646: 'cards': unknown override specifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(51): error C2143: syntax error: missing ',' before '['
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(51): error C2143: syntax error: missing ')' before ';'
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(51): error C2238: unexpected token(s) preceding ';'
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(24): error C2065: 'cards': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(24): error C2059: syntax error: ']'
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(38): error C2065: 'cards': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(38): error C2065: 'c': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(64): error C2065: 'r': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(68): error C2065: 's': undeclared identifier
+d:\documents\git\cecs-282\lab assignments\war\war\war.cpp(73): error C2513: 'char': no variable declared before '='
