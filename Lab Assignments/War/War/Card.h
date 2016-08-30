@@ -3,9 +3,11 @@ class Card
 public:
 	Card();
 
-	Card(int r, char s);
+	Card(char r, char s);
 
-	int getRank();
+	int getValue();
+
+	char getRank();
 
 	char getSuit();
 

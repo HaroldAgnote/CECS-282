@@ -15,4 +15,6 @@ public:
 
 private:
 	Card cards[52];
+	int cardsRemain;
+	int index;
 };

@@ -8,10 +8,5 @@ using namespace std;
 
 int main()
 {
-	Deck test;
-
-	test.displayCards();
-
-	char a;
-	cin >> a;
+	
 }

@@ -14,6 +14,11 @@ Card::Card(int r, char s)
 	suit = s;
 }
 
+int Card::getValue()
+{
+	return rank;
+}
+
 int Card::getRank()
 {
 	return rank;

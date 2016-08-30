@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "Deck.h"
+#include <random>
 
 Deck::Deck()
 {
-	char suits[4] = { 'd','h','s','c' };
+	index = 0;
+	cardsRemain = 52;
+	char suits[4] = { 'D','H','S','C' };
 	int r = 1;
 	int s = 0;
 	for (int i = 0; i < 52; i++)
@@ -25,18 +28,29 @@ Deck::Deck()
 
 Card Deck::deal()
 {
-	Card give = cards[0];
+	Card give = cards[index];
+	index++;
+	cardsRemain--;
 	return give;
 }
 
 void Deck::shuffle()
 {
+	for (int i = 0; i < 52; i++)
+	{
+		int index = i;
+		int randomIndex = rand() % 52;
 
+		Card swap = cards[i];
+		cards[i] = cards[randomIndex];
+		cards[randomIndex] = swap;
+		
+	}
 }
 
 int Deck::cardsLeft()
 {
-	return 0;
+	return cardsRemain;
 }
 
 void Deck::displayCards()
