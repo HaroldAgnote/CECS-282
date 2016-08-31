@@ -44,7 +44,6 @@ void Deck::shuffle()
 		Card swap = cards[i];
 		cards[i] = cards[randomIndex];
 		cards[randomIndex] = swap;
-		
 	}
 }
 
@@ -55,7 +54,7 @@ int Deck::cardsLeft()
 
 void Deck::displayCards()
 {
-	for (int i = 0; i < 52; i++)
+	for (int i = index; i < 52; i++)
 	{
 		cards[i].display();
 	}

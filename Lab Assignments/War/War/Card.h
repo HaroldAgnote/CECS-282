@@ -3,9 +3,11 @@ class Card
 public:
 	Card();
 
-	Card(char r, char s);
+	Card(int r, char s);
 
 	int getValue();
+
+	void assignRank();
 
 	char getRank();
 
@@ -16,6 +18,7 @@ public:
 	void display();
 
 private:
-	int rank;
+	int value;
+	char rank;
 	char suit;
 };
