@@ -23,32 +23,16 @@ int main()
 		cin >> choice;
 		switch (choice)
 		{
-			case 1:
-			{
-				Deck replace;
-				play = replace;
-				break;
-			}
-			case 2:
-			{
-				play.displayCards();
-				break;
-			}
-			case 3:
-			{
-				play.shuffle();
-				break;
-			}
-			case 4:
-			{
-				play = war(play);
-				break;
-			}
-			case 5:
-			{
-				done = true;
-				break;
-			}
+			case 1: play.initializeDeck();
+					break;
+			case 2: play.displayCards();
+					break;
+			case 3: play.shuffle();
+					break;
+			case 4:	play = war(play);
+					break;
+			case 5: done = true;
+					break;
 		}
 
 	}
@@ -75,20 +59,17 @@ Deck war(Deck d)
 	{
 		Card player = d.deal();
 		Card computer = d.deal();
-		int playerValue = player.getValue();
-		int computerValue = computer.getValue();
-		int cardsLeft = d.cardsLeft();
 
-		cout << "Player drew a";
+		cout << "Player drew a ";
 		player.display();
-		cout << "Computer drew a";
+		cout << "Computer drew a ";
 		computer.display();
 
-		if (playerValue > computerValue)
+		if (player.getValue() > computer.getValue())
 		{
 			cout << "You win!" << endl;
 		}
-		else if (playerValue < computerValue)
+		else if (player.getValue() < computer.getValue())
 		{
 			cout << "You lose!" << endl;
 		}
@@ -97,7 +78,7 @@ Deck war(Deck d)
 			cout << "It's a tie!" << endl;
 		}
 
-		if (cardsLeft > 0)
+		if (d.cardsLeft() > 0)
 		{
 			cout << "Do you want to play again?" << endl;
 			cin >> yesNo;

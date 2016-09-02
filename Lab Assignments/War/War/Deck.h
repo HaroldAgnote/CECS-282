@@ -4,6 +4,8 @@ class Deck
 {
 public:
 	Deck();
+	
+	void initializeDeck();
 
 	Card deal();
 
@@ -16,5 +18,5 @@ public:
 private:
 	Card cards[52];
 	int cardsRemain;
-	int index;
+	int counter;
 };

@@ -5,7 +5,9 @@ using namespace std;
 
 Card::Card()
 {
-
+	value = 0;
+	suit = 'z';
+	rank = 'z';
 }
 
 Card::Card(int v, char s)
@@ -17,7 +19,7 @@ Card::Card(int v, char s)
 
 int Card::getValue()
 {
-	return rank;
+	return value;
 }
 
 char Card::getRank()
@@ -72,5 +74,5 @@ void Card::assignRank()
 
 void Card::display()
 {
-	cout << "I am a " << rank << " of " << suit << endl;
+	cout << rank << " of " << suit << endl;
 }
