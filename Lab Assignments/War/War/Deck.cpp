@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Deck.h"
 #include <random>
+#include <ctime>
+
+using namespace std;
 
 Deck::Deck()
 {
@@ -40,6 +43,7 @@ Card Deck::deal()
 
 void Deck::shuffle()
 {
+	srand(time(NULL));
 	for (int i = counter; i < 52; i++)
 	{
 		int index = i;

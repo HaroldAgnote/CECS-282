@@ -76,3 +76,4 @@ void Card::display()
 {
 	cout << rank << " of " << suit << endl;
 }
+
