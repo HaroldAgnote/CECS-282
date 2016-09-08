@@ -77,3 +77,63 @@ void Card::display()
 	cout << rank << " of " << suit << endl;
 }
 
+void Card::displayNicely()
+{
+	if (suit == 'H')
+	{
+		cout << "-------------" << endl;
+		cout << "[ " << rank << "         ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[   ** **   ]" << endl;
+		cout << "[  *  *  *  ]" << endl;
+		cout << "[   *   *   ]" << endl;
+		cout << "[    * *    ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[         " << rank << " ]" << endl;
+		cout << "-------------" << endl;
+	}
+	if (suit == 'D')
+	{
+		cout << "-------------" << endl;
+		cout << "[ " << rank << "         ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[    * *    ]" << endl;
+		cout << "[   *   *   ]" << endl;
+		cout << "[    * *    ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[         " << rank << " ]" << endl;
+		cout << "-------------" << endl;
+	}
+	if (suit == 'S')
+	{
+		cout << "-------------" << endl;
+		cout << "[ " << rank << "         ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[    * *    ]" << endl;
+		cout << "[   *****   ]" << endl;
+		cout << "[  *  *  *  ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[         " << rank << " ]" << endl;
+		cout << "-------------" << endl;
+	}
+	if (suit == 'C')
+	{
+		cout << "-------------" << endl;
+		cout << "[ " << rank << "         ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[  *  *  *  ]" << endl;
+		cout << "[   * * *   ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[     *     ]" << endl;
+		cout << "[           ]" << endl;
+		cout << "[         " << rank << " ]" << endl;
+		cout << "-------------" << endl;
+	}
+}
+

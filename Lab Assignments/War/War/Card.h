@@ -1,3 +1,6 @@
+#ifndef CARD_H
+#define CARD_H
+
 class Card
 {
 public:
@@ -17,8 +20,12 @@ public:
 
 	void display();
 
+	void displayNicely();
+
 private:
 	int value;
 	char rank;
 	char suit;
 };
+
+#endif

@@ -60,9 +60,11 @@ Deck war(Deck d)
 		Card player = d.deal();
 		Card computer = d.deal();
 
-		cout << "Player drew a ";
+		cout << "Player drew a \n";
+		player.displayNicely();
 		player.display();
-		cout << "Computer drew a ";
+		cout << "Computer drew a \n";
+		computer.displayNicely();
 		computer.display();
 
 		if (player.getValue() > computer.getValue())

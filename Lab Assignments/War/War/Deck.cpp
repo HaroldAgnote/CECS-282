@@ -13,6 +13,8 @@ Deck::Deck()
 
 void Deck::initializeDeck()
 {
+	counter = 0;
+	cardsRemain = 52;
 	char suits[4] = { 'D','H','S','C' };
 	int r = 1;
 	int s = 0;
@@ -44,15 +46,16 @@ Card Deck::deal()
 void Deck::shuffle()
 {
 	srand(time(NULL));
-	for (int i = counter; i < 52; i++)
+	for (int i = counter; i < cardsRemain + counter; i++)
 	{
 		int index = i;
 		int randomIndex;
 		do
 		{
-			randomIndex = rand() % 52;
+			randomIndex = rand() % cardsRemain + counter;
 		}
-		while (randomIndex < counter);
+		while
+		(randomIndex < counter);
 		Card swap = cards[i];
 		cards[i] = cards[randomIndex];
 		cards[randomIndex] = swap;
