@@ -53,9 +53,20 @@ void displayMenu()
 
 Deck war(Deck d)
 {
-	bool play = true;
+	bool play;
+
+	if (d.cardsLeft() > 0)
+	{
+		play = true;
+	}
+	else
+	{
+		cout << "There are no more cards left in the deck!" << endl;
+		cout << "You need a new deck to play again..." << endl;
+		play = false;
+	}
 	char yesNo;
-	do
+	while (play)
 	{
 		Card player = d.deal();
 		Card computer = d.deal();
@@ -82,7 +93,7 @@ Deck war(Deck d)
 
 		if (d.cardsLeft() > 0)
 		{
-			cout << "Do you want to play again?" << endl;
+			cout << "Do you want to play again? (Y/N)" << endl;
 			cin >> yesNo;
 			if (yesNo == 'n')
 			{
@@ -95,7 +106,6 @@ Deck war(Deck d)
 			play = false;
 		}
 	}
-	while (play);
 
 	return d;
 }

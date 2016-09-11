@@ -2,6 +2,7 @@
 #include "Deck.h"
 #include <random>
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 
@@ -46,19 +47,21 @@ Card Deck::deal()
 void Deck::shuffle()
 {
 	srand(time(NULL));
-	for (int i = counter; i < cardsRemain + counter; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		int index = i;
-		int randomIndex;
-		do
+		for (int i = counter; i < cardsRemain + counter; i++)
 		{
-			randomIndex = rand() % cardsRemain + counter;
+			int index = i;
+			int randomIndex;
+			do
+			{
+				randomIndex = rand() % cardsRemain + counter;
+			} while
+				(randomIndex < counter);
+			Card swap = cards[i];
+			cards[i] = cards[randomIndex];
+			cards[randomIndex] = swap;
 		}
-		while
-		(randomIndex < counter);
-		Card swap = cards[i];
-		cards[i] = cards[randomIndex];
-		cards[randomIndex] = swap;
 	}
 }
 
@@ -69,8 +72,15 @@ int Deck::cardsLeft()
 
 void Deck::displayCards()
 {
-	for (int i = counter; i < 52; i++)
+	if (cardsRemain <= 0)
 	{
-		cards[i].display();
+		cout << "There are no cards to display..." << endl;
+	}
+	else
+	{
+		for (int i = counter; i < 52; i++)
+		{
+			cards[i].display();
+		}
 	}
 }
