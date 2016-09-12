@@ -56,8 +56,8 @@ void Deck::shuffle()
 			do
 			{
 				randomIndex = rand() % cardsRemain + counter;
-			} while
-				(randomIndex < counter);
+			}
+			while (randomIndex < counter);
 			Card swap = cards[i];
 			cards[i] = cards[randomIndex];
 			cards[randomIndex] = swap;

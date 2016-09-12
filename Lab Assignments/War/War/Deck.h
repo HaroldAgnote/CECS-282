@@ -1,3 +1,6 @@
+#ifndef DECK_H
+#define DECK_H
+
 #include "Card.h"
 
 class Deck
@@ -20,3 +23,5 @@ private:
 	int cardsRemain;
 	int counter;
 };
+
+#endif
