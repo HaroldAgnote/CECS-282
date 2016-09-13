@@ -85,9 +85,9 @@ void Card::displayNicely()
 		cout << "[ " << rank << "         ]" << endl;
 		cout << "[           ]" << endl;
 		cout << "[   ** **   ]" << endl;
-		cout << "[  *  *  *  ]" << endl;
-		cout << "[   *   *   ]" << endl;
-		cout << "[    * *    ]" << endl;
+		cout << "[  *******  ]" << endl;
+		cout << "[   *****   ]" << endl;
+		cout << "[    ***    ]" << endl;
 		cout << "[     *     ]" << endl;
 		cout << "[           ]" << endl;
 		cout << "[         " << rank << " ]" << endl;
@@ -99,9 +99,9 @@ void Card::displayNicely()
 		cout << "[ " << rank << "         ]" << endl;
 		cout << "[           ]" << endl;
 		cout << "[     *     ]" << endl;
-		cout << "[    * *    ]" << endl;
-		cout << "[   *   *   ]" << endl;
-		cout << "[    * *    ]" << endl;
+		cout << "[    ***    ]" << endl;
+		cout << "[   *****   ]" << endl;
+		cout << "[    ***    ]" << endl;
 		cout << "[     *     ]" << endl;
 		cout << "[           ]" << endl;
 		cout << "[         " << rank << " ]" << endl;
@@ -113,7 +113,7 @@ void Card::displayNicely()
 		cout << "[ " << rank << "         ]" << endl;
 		cout << "[           ]" << endl;
 		cout << "[     *     ]" << endl;
-		cout << "[    * *    ]" << endl;
+		cout << "[    ***    ]" << endl;
 		cout << "[   *****   ]" << endl;
 		cout << "[  *  *  *  ]" << endl;
 		cout << "[     *     ]" << endl;
@@ -125,8 +125,8 @@ void Card::displayNicely()
 	{
 		cout << "-------------" << endl;
 		cout << "[ " << rank << "         ]" << endl;
-		cout << "[           ]" << endl;
 		cout << "[     *     ]" << endl;
+		cout << "[ *   *   * ]" << endl;
 		cout << "[  *  *  *  ]" << endl;
 		cout << "[   * * *   ]" << endl;
 		cout << "[     *     ]" << endl;

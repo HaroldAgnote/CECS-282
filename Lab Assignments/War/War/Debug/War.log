@@ -1,4 +1,5 @@
-﻿  Deck.cpp
-d:\documents\git\cecs-282\lab assignments\war\war\deck.cpp(49): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  War.cpp
+  Card.cpp
+  Generating Code...
   War.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\War\Debug\War.exe
   War.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\War\Debug\War.pdb (Full PDB)

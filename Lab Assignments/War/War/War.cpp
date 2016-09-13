@@ -1,6 +1,9 @@
-// War.cpp : Defines the entry point for the console application.
-//
-
+/*
+ * Name: Harold
+ * Class: CECS 282 - Sec. 07
+ * Project Name: (Prog 1 - War)
+ * Due Date: (09/12/2016)
+ */
 #include "stdafx.h"
 #include "Deck.h"
 #include <iostream>
@@ -29,7 +32,7 @@ int main()
 					break;
 			case 3: play.shuffle();
 					break;
-			case 4:	play = war(play);
+			case 4: play = war(play);
 					break;
 			case 5: done = true;
 					break;
@@ -39,6 +42,8 @@ int main()
 	while (!done);
 
 	cout << "Thank you for playing War!" << endl;
+
+	return 0;
 }
 
 void displayMenu()
@@ -109,4 +114,3 @@ Deck war(Deck d)
 
 	return d;
 }
-

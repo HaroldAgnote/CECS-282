@@ -78,7 +78,7 @@ void Deck::displayCards()
 	}
 	else
 	{
-		for (int i = counter; i < 52; i++)
+		for (int i = counter; i < cardsRemain + counter; i++)
 		{
 			cards[i].display();
 		}
