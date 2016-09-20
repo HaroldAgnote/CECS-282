@@ -11,7 +11,7 @@ int main()
 {
 	myDate date1(1, 1, -4712);
 
-	cout << date1.JulianDate(1, 2, -4712);
+	date1.display();
 
 	char a;
 	cin >> a;

@@ -38,6 +38,8 @@ public:
 
 	string dayOfWeek();
 
+	string numToMonth();
+
 	int JulianDate(int year, int month, int day);
 
 };
