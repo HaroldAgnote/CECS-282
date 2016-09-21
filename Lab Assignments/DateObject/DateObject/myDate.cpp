@@ -20,19 +20,19 @@ myDate::myDate(int M, int D, int Y)
 
 void myDate::display()
 {
-	string * monthText = & numToMonth();
-
-	cout << * monthText << " " << day << ", " << year;
+	cout << numToMonth << day << ", " << year;
 }
 
 void myDate::incrDate(int N)
 {
-
+	int & newDay = day;
+	newDay += N;
 }
 
 void myDate::decrDate(int N)
 {
-
+	int & newDay = day;
+	newDay -= N;
 }
 
 int myDate::daysBetween(myDate D)
@@ -62,7 +62,7 @@ int myDate::dayOfYear()
 
 string myDate::dayOfWeek()
 {
-	return "hi";
+	
 }
 
 string myDate::numToMonth()
@@ -103,11 +103,11 @@ string myDate::numToMonth()
 
 int myDate::JulianDate(int year, int month, int day)
 {
-	int julianDate;
-
 	int i = year;
 	int j = month;
 	int k = day;
+
+	int julianDate;
 
 	julianDate = k - 32075 + 1461 * (i + 4800 + (j - 14) / 12) / 4 + 367 * (j - 2 - (j - 14) / 12 * 12) / 12 - 3 * ((i + 4900 + (j - 14) / 12) / 100) / 4;
 

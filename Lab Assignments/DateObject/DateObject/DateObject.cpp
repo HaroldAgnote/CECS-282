@@ -12,10 +12,12 @@ int main()
 	myDate date1(1, 1, -4712);
 
 	date1.display();
+	
+	int test = date1.JulianDate(-4712, 1, 1);
 
+	cout << test;
 	char a;
 	cin >> a;
 
     return 0;
 }
-
