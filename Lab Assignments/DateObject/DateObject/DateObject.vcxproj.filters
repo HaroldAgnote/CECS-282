@@ -32,10 +32,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DateObject.cpp">
+    <ClCompile Include="myDate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="myDate.cpp">
+    <ClCompile Include="testDate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

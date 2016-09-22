@@ -6,8 +6,10 @@
 // All rights and lefts reserved.
 //
 
+#include "stdafx.h"
 #include "myDate.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main()
