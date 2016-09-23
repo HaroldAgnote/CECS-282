@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="myDate.cpp" />
+    <ClCompile Include="testDate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="myDate.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7FC188A7-46CF-4BCA-93F2-BAF07C77A80B}</ProjectGuid>
     <RootNamespace>myDateProject</RootNamespace>
@@ -109,13 +116,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\myDate.cpp" />
-    <ClCompile Include="..\testDate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\myDate.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
