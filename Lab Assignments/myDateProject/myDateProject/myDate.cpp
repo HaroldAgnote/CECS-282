@@ -13,9 +13,18 @@ myDate::myDate()
 
 myDate::myDate(int M, int D, int Y)
 {
-	day = D;
-	month = M;
-	year = Y;
+	if (M > 12 || D <= 0 || D > 31)
+	{
+		day = 11;
+		month = 5;
+		year = 1959;
+	}
+	else
+	{
+		day = D;
+		month = M;
+		year = Y;
+	}
 }
 
 void myDate::display()
@@ -41,7 +50,11 @@ void myDate::decrDate(int N)
 
 int myDate::daysBetween(myDate D)
 {
-	return D.JulianDate(D.getYear(),D.getMonth(),D.getDay()) - JulianDate(year, month, day);
+	int dYear = D.getYear();
+	int dMonth = D.getMonth();
+	int dDay = D.getDay();
+
+	return D.JulianDate(dYear, dMonth, dDay) - JulianDate(year, month, day);
 }
 
 int myDate::getMonth()
@@ -61,7 +74,12 @@ int myDate::getYear()
 
 int myDate::dayOfYear()
 {
-	return (JulianDate(year, month, day) - JulianDate(year, 1, 1)) + 1;
+	myDate newYears(1, 1, year);
+
+	int newYearMonth = newYears.getMonth();
+	int newYearDay = newYears.getDay();
+
+	return (JulianDate(year, month, day) - JulianDate(year, newYearMonth, newYearDay)) + 1;
 }
 
 string myDate::dayOfWeek()
@@ -130,7 +148,7 @@ string myDate::numToMonth()
 	return monthText;
 }
 
-int myDate::JulianDate(int year, int month, int day)
+int myDate::JulianDate(int & year, int & month, int & day)
 {
 	int i = year;
 	int j = month;
