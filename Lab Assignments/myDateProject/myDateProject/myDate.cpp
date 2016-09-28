@@ -1,3 +1,10 @@
+/*
+ * Name: Harold Agnote
+ * Student ID: 012264497
+ * Class: CECS 282 - Sec. 07
+ * Project Name: (Program 2 - ADT(Date Object))
+ * Due Date: (September 26, 2016)
+ */
 #include "myDate.h"
 #include <iostream>
 #include <string>
