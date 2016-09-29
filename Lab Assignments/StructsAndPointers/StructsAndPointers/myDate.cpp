@@ -20,7 +20,7 @@ myDate::myDate()
 
 myDate::myDate(int M, int D, int Y)
 {
-	if (M > 12 || D <= 0 || D > 31)
+	if (M <= 0 || M > 12 || D <= 0 || D > 31)
 	{
 		day = 11;
 		month = 5;
