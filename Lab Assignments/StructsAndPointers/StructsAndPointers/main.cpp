@@ -1,6 +1,7 @@
 #include "myDate.h"
 #include <iostream>
 #include <random>
+#include <ctime>
 
 using namespace std;
 
@@ -14,35 +15,81 @@ struct Student
 	string homeTown;
 };
 
-void initializeStudent(Student & student);
+void initializeStudents(Student * student);
 int randomID();
 char randomGrade();
 myDate randomDate();
-
+void idSort(Student ** array);
+void displayMenu();
+void displayStudents(Student * student);
 
 int main()
 {
+	srand(time(NULL));
 	Student CECS282[10];
+	Student * idPtrs[10];
+	Student * agePtrs[10];
+	Student * namePtrs[10];
+	Student * gradePtrs[10];
+	Student * homeTownPtrs[10];
+	bool done = false;
+
+	initializeStudents(CECS282);
 	for (int i = 0; i < 10; i++)
 	{
-		initializeStudent(CECS282[i]);
-
-		cout << CECS282[i].name << " " << CECS282[i].id << " " << CECS282[i].grade << " " << CECS282[i].homeTown << endl;
-		CECS282[i].birthday.display();
-		cout << endl;
+		idPtrs[i] = &CECS282[i];
 	}
+	idSort(idPtrs);
+	
+
+	do
+	{
+		displayMenu();
+		int choice;
+		cin >> choice;
+		
+		switch (choice)
+		{
+		case 1: displayStudents(CECS282);
+			break; 
+		case 2: displayStudents(*idPtrs);
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7: done = true;
+			break;
+		default: cout << "Invalid Input\n";
+			break;
+		}
+	}
+	while (!done);
+
 
 	system("pause");
 	return 0;
 }
 
-void initializeStudent(Student & student)
+void initializeStudents(Student * student)
 {
-	student.name = "Name";
-	student.id = randomID();
-	student.grade = randomGrade();
-	student.birthday = randomDate();
-	student.homeTown = "Hometown";
+	string defaultName = "Name";
+	string defaultHome = "Home";
+
+	for (int i = 0; i < 10; i++)
+	{
+		(*student).name = defaultName;
+		(*student).id = randomID();
+		(*student).grade = randomGrade();
+		(*student).birthday = randomDate();
+		(*student).homeTown = defaultHome;
+
+		student = (student + 1);
+	}
 }
 
 int randomID()
@@ -100,4 +147,65 @@ myDate randomDate()
 	myDate randomDate(rMonth, rDay, rYear);
 
 	return randomDate;
+}
+
+void idSort(Student ** array)
+{
+	bool swapped = false;
+
+	do
+	{
+		swapped = false;
+		for (int i = 0; i < 9; i++)
+		{
+			if ((*array[i]).id > (*array[i + 1]).id)
+			{
+				swap(array[i], array[i + 1]);
+			}
+		}
+	}
+	while (swapped);
+
+	/*
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = i; j < 9; j++)
+		{
+			if ((*array[j]).id > (*array[j + 1]).id)
+			{
+				swap(array[j], array[j + 1]);
+			}
+		}
+	}*/
+}
+
+void swap(Student * ptr1, Student * ptr2)
+{
+	Student * swap = ptr1;
+	ptr1 = ptr2;
+	ptr2 = swap;
+}
+
+
+void displayMenu()
+{
+	cout << "What would you like to do?\n\n";
+	cout << "1. Display Original List\n";
+	cout << "2. Display List sorted by Student ID\n";
+	cout << "3. Display List sorted by Student Age\n";
+	cout << "4. Display List sorted by Name\n";
+	cout << "5. Display List sorted by Grade\n";
+	cout << "6. Display List sorted by Home Town\n\n";
+	cout << "7. Exit\n\n";
+}
+
+void displayStudents(Student * student)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		cout << (*student).name << " " << (*student).id << " " << (*student).grade << " " << (*student).homeTown << endl;
+		(*student).birthday.display();
+		cout << endl;
+		student = (student + 1);
+	}
 }
