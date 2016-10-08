@@ -1,8 +1,3 @@
 ﻿  main.cpp
-d:\documents\git\cecs-282\lab assignments\structsandpointers\structsandpointers\main.cpp(28): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\documents\git\cecs-282\lab assignments\structsandpointers\structsandpointers\main.cpp(33): warning C4101: 'gradePtrs': unreferenced local variable
-d:\documents\git\cecs-282\lab assignments\structsandpointers\structsandpointers\main.cpp(32): warning C4101: 'namePtrs': unreferenced local variable
-d:\documents\git\cecs-282\lab assignments\structsandpointers\structsandpointers\main.cpp(34): warning C4101: 'homeTownPtrs': unreferenced local variable
-d:\documents\git\cecs-282\lab assignments\structsandpointers\structsandpointers\main.cpp(31): warning C4101: 'agePtrs': unreferenced local variable
-  StructsAndPointers.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\StructsAndPointers\Debug\StructsAndPointers.exe
-  StructsAndPointers.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\StructsAndPointers\Debug\StructsAndPointers.pdb (Partial PDB)
+d:\documents\git\cecs-282\lab assignments\structsandpointers\structsandpointers\main.cpp(36): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\documents\git\cecs-282\lab assignments\structsandpointers\structsandpointers\main.cpp(104): error C3863: array type 'char [23]' is not assignable
