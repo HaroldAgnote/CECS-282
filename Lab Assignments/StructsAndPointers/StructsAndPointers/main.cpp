@@ -106,6 +106,7 @@ void initializeStudents(Student * student, int size)
 		(*student).grade = randomGrade();
 		(*student).birthday = randomDate();
 		(*student).homeTown = defaultHome + to_string(rand() % 100);
+
 		student = (student + 1);
 	}
 }
@@ -197,7 +198,7 @@ void ageSort(Student ** array, int size)
 		swapped = false;
 		for (int i = 0; i < size - 1; i++)
 		{
-			if ((*array[i]).birthday.daysBetween((*array[i + 1]).birthday) > 0)
+			if (((*array[i]).birthday.getJulianDate()) > ((*array[i + 1]).birthday.getJulianDate()))
 			{
 				Student * swap = array[i];
 				array[i] = array[i + 1];

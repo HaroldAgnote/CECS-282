@@ -2,11 +2,12 @@
  * Name: Harold Agnote
  * Student ID: 012264497
  * Class: CECS 282 - Sec. 07
- * Project Name: (Program 2 - ADT(Date Object))
+ * Project Name: (Program 2 - ADT(Date Object)
  * Due Date: (September 26, 2016)
  */
 #include "myDate.h"
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 using namespace std;
@@ -16,21 +17,24 @@ myDate::myDate()
 	day = 11;
 	month = 5;
 	year = 1959;
+	julianDate = JulianDate(year, month, day);
 }
 
 myDate::myDate(int M, int D, int Y)
 {
-	if (M > 12 || D <= 0 || D > 31)
+	if (M <= 0 || M > 12 || D <= 0 || D > 31)
 	{
 		day = 11;
 		month = 5;
 		year = 1959;
+		julianDate = JulianDate(year, month, day);
 	}
 	else
 	{
 		day = D;
 		month = M;
 		year = Y;
+		julianDate = JulianDate(year, month, day);
 	}
 }
 
@@ -39,6 +43,13 @@ void myDate::display()
 	string monthText = numToMonth();
 
 	cout << monthText << day << ", " << year;
+}
+
+string myDate::getString()
+{
+	string monthText = numToMonth();
+
+	return monthText + to_string(day) + ", " + to_string(year);
 }
 
 void myDate::incrDate(int N)
@@ -77,6 +88,11 @@ int myDate::getDay()
 int myDate::getYear()
 {
 	return year;
+}
+
+int myDate::getJulianDate()
+{
+	return julianDate;
 }
 
 int myDate::dayOfYear()
