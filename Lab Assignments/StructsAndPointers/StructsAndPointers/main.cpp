@@ -10,7 +10,7 @@ using namespace std;
 
 struct Student
 {
-	char name[23];
+	string name;
 	int id;
 	char grade;
 	myDate birthday;
@@ -96,7 +96,7 @@ int main()
 
 void initializeStudents(Student * student, int size)
 {
-	char defaultName[] = "Name";
+	string defaultName = "Name";
 	string defaultHome = "Home";
 
 	for (int i = 0; i < size; i++)
@@ -106,7 +106,6 @@ void initializeStudents(Student * student, int size)
 		(*student).grade = randomGrade();
 		(*student).birthday = randomDate();
 		(*student).homeTown = defaultHome + to_string(rand() % 100);
-
 		student = (student + 1);
 	}
 }
@@ -198,7 +197,7 @@ void ageSort(Student ** array, int size)
 		swapped = false;
 		for (int i = 0; i < size - 1; i++)
 		{
-			if (((*array[i]).birthday.getJulianDate()) > ((*array[i + 1]).birthday.getJulianDate()))
+			if ((*array[i]).birthday.daysBetween((*array[i + 1]).birthday) > 0)
 			{
 				Student * swap = array[i];
 				array[i] = array[i + 1];
@@ -219,7 +218,7 @@ void nameSort(Student ** array, int size)
 		swapped = false;
 		for (int i = 0; i < size - 1; i++)
 		{
-			if (strcmp((*array[i]).name, (*array[i + 1]).name) > 0)
+			if (/*strcmp*/((*array[i]).name.compare((*array[i + 1]).name) > 0))
 			{
 				Student * swap = array[i];
 				array[i] = array[i + 1];
