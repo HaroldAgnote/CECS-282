@@ -1,3 +1,10 @@
+/*
+* Name: Harold Agnote
+* Student ID: 012264497
+* Class: CECS 282 - Sec. 07
+* Project Name: (Program 3 - Structures and Pointers)
+* Due Date: (October 10, 2016)
+*/
 #include "myDate.h"
 #include <iostream>
 #include <iomanip>
@@ -10,7 +17,7 @@ using namespace std;
 
 struct Student
 {
-	string name;
+	char name[20];
 	int id;
 	char grade;
 	myDate birthday;
@@ -18,14 +25,18 @@ struct Student
 };
 
 void initializeStudents(Student * student, int size);
+void checkID(Student * student, int size);
+char* randomName();
 int randomID();
 char randomGrade();
 myDate randomDate();
+string randomHome();
 void idSort(Student ** array, int size);
 void ageSort(Student ** array, int size);
 void nameSort(Student ** array, int size);
 void gradeSort(Student ** array, int size);
 void homeSort(Student ** array, int size);
+void swap(Student ** pointer1, Student ** pointer2);
 void displayHeader();
 void displayMenu();
 void displayStudents(Student * student, int size);
@@ -43,6 +54,7 @@ int main()
 	bool done = false;
 
 	initializeStudents(CECS282, sizeof(CECS282)/sizeof(CECS282[0]));
+	checkID(CECS282, sizeof(CECS282) / sizeof(CECS282[0]));
 	for (int i = 0; i < 10; i++)
 	{
 		idPtrs[i] = &CECS282[i];
@@ -96,24 +108,91 @@ int main()
 
 void initializeStudents(Student * student, int size)
 {
-	string defaultName = "Name";
-	string defaultHome = "Home";
-
 	for (int i = 0; i < size; i++)
 	{
-		(*student).name = defaultName + to_string(rand() % 100);
+		strcpy_s((*student).name, randomName());
 		(*student).id = randomID();
 		(*student).grade = randomGrade();
 		(*student).birthday = randomDate();
-		(*student).homeTown = defaultHome + to_string(rand() % 100);
+		(*student).homeTown = randomHome();
 
 		student = (student + 1);
 	}
 }
 
+void checkID(Student * student, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		Student * innerPointer = (student + 1);
+		for (int j = 0; j < size - 1; j++)
+		{
+			if ((*student).id == ((innerPointer)->id))
+			{
+				(*student).id = randomID();
+			}
+			innerPointer = (innerPointer + 1);
+		}
+		student = (student + 1);
+	}
+}
+
+char* randomName()
+{
+	char* randomName;
+	int randomNumber = 1 + (rand() % 20);
+	
+	switch (randomNumber)
+	{
+	case 1: randomName = "Jim";
+		break;
+	case 2: randomName = "Bruce";
+		break;
+	case 3: randomName = "Clark";
+		break;
+	case 4: randomName = "Natasha";
+		break;
+	case 5: randomName = "Connie";
+		break;
+	case 6: randomName = "Steven";
+		break;
+	case 7: randomName = "Tony";
+		break;
+	case 8: randomName = "Spongebob";
+		break;
+	case 9: randomName = "Tom";
+		break;
+	case 10: randomName = "Fred";
+		break;
+	case 11: randomName = "Peter";
+		break;
+	case 12: randomName = "Oprah";
+		break;
+	case 13: randomName = "Emma";
+		break;
+	case 14: randomName = "Tom";
+		break;
+	case 15: randomName = "Carrie";
+		break;
+	case 16: randomName = "Kiera";
+		break;
+	case 17: randomName = "Sandy";
+		break;
+	case 18: randomName = "Lena";
+		break;
+	case 19: randomName = "Hana";
+		break;
+	case 20: randomName = "Angela";
+		break;
+	default: randomName = "Steven Gold";
+		break;
+	}
+	return randomName;
+}
+
 int randomID()
 {
-	return (1000 + (rand() % 8999));
+	return (1000 + (rand() % 9000));
 }
 
 char randomGrade()
@@ -168,6 +247,40 @@ myDate randomDate()
 	return randomDate;
 }
 
+string randomHome()
+{
+	string home;
+	int randomNumber = 1 + (rand() % 10);
+
+	switch (randomNumber)
+	{
+	case 1: home = "Pomona";
+		break;
+	case 2: home = "Los Angeles";
+		break;
+	case 3: home = "San Francisco";
+		break;
+	case 4: home = "Bellflower";
+		break;
+	case 5: home = "Las Vegas";
+		break;
+	case 6: home = "Chino";
+		break;
+	case 7: home = "Cerritos";
+		break;
+	case 8: home = "Long Beach";
+		break;
+	case 9: home = "San Diego";
+		break;
+	case 10: home = "Norwalk";
+		break;
+	default: home = "Lakewood";
+		break;
+
+	}
+	return home;
+}
+
 void idSort(Student ** array, int size)
 {
 	bool swapped = false;
@@ -179,9 +292,7 @@ void idSort(Student ** array, int size)
 		{
 			if (((*array[i]).id) > ((*array[i+1]).id))
 			{
-				Student * swap = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = swap;
+				swap(array[i], array[i + 1]);
 				swapped = true;
 			}
 		}
@@ -198,11 +309,9 @@ void ageSort(Student ** array, int size)
 		swapped = false;
 		for (int i = 0; i < size - 1; i++)
 		{
-			if (((*array[i]).birthday.getJulianDate()) > ((*array[i + 1]).birthday.getJulianDate()))
+			if ((*array[i]).birthday.daysBetween((*array[i + 1]).birthday) < 0)
 			{
-				Student * swap = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = swap;
+				swap(array[i], array[i + 1]);
 				swapped = true;
 			}
 		}
@@ -219,11 +328,9 @@ void nameSort(Student ** array, int size)
 		swapped = false;
 		for (int i = 0; i < size - 1; i++)
 		{
-			if (/*strcmp*/((*array[i]).name.compare((*array[i + 1]).name) > 0))
+			if (strcmp((*array[i]).name, (*array[i + 1]).name) > 0)
 			{
-				Student * swap = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = swap;
+				swap(array[i], array[i + 1]);
 				swapped = true;
 			}
 		}
@@ -242,9 +349,7 @@ void gradeSort(Student ** array, int size)
 		{
 			if (((*array[i]).grade) > ((*array[i + 1]).grade))
 			{
-				Student * swap = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = swap;
+				swap(array[i], array[i + 1]);
 				swapped = true;
 			}
 		}
@@ -263,14 +368,19 @@ void homeSort(Student ** array, int size)
 		{
 			if (((*array[i]).homeTown).compare((*array[i + 1]).homeTown) > 0)
 			{
-				Student * swap = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = swap;
+				swap(array[i], array[i + 1]);
 				swapped = true;
 			}
 		}
 	}
 	while (swapped);
+}
+
+void swap(Student ** pointer1, Student ** pointer2)
+{
+	Student * swap = *pointer1;
+	*pointer1 = *pointer2;
+	*pointer2 = swap;
 }
 
 void displayMenu()
