@@ -1,0 +1,189 @@
+/*
+ * Name: Harold Agnote
+ * Student ID: 012264497
+ * Class: CECS 282 - Sec. 07
+ * Project Name: (Program 2 - ADT(Date Object))
+ * Due Date: (September 26, 2016)
+ */
+#include "upDate.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+upDate::upDate()
+{
+	day = 11;
+	month = 5;
+	year = 1959;
+}
+
+upDate::upDate(int M, int D, int Y)
+{
+	if (M > 12 || D <= 0 || D > 31)
+	{
+		day = 11;
+		month = 5;
+		year = 1959;
+	}
+	else
+	{
+		day = D;
+		month = M;
+		year = Y;
+	}
+}
+
+void upDate::display()
+{
+	string monthText = numToMonth();
+
+	cout << monthText << day << ", " << year;
+}
+
+void upDate::incrDate(int N)
+{
+	int julianDate = JulianDate(year, month, day);
+	julianDate += N;
+	GregorianDate(julianDate);
+}
+
+void upDate::decrDate(int N)
+{
+	int julianDate = JulianDate(year, month, day);
+	julianDate -= N;
+	GregorianDate(julianDate);
+}
+
+int upDate::daysBetween(upDate D)
+{
+	int dYear = D.getYear();
+	int dMonth = D.getMonth();
+	int dDay = D.getDay();
+
+	return D.JulianDate(dYear, dMonth, dDay) - JulianDate(year, month, day);
+}
+
+int upDate::getMonth()
+{
+	return month;
+}
+
+int upDate::getDay()
+{
+	return day;
+}
+
+int upDate::getYear()
+{
+	return year;
+}
+
+int upDate::dayOfYear()
+{
+	upDate newYears(1, 1, year);
+
+	int newYearMonth = newYears.getMonth();
+	int newYearDay = newYears.getDay();
+
+	return (JulianDate(year, month, day) - JulianDate(year, newYearMonth, newYearDay)) + 1;
+}
+
+string upDate::dayOfWeek()
+{
+	string dayText = "";
+
+	int julianDate = JulianDate(year, month, day);
+
+	switch (julianDate % 7)
+	{
+	case 0: dayText = "Monday ";
+		break;
+	case 1: dayText = "Tuesday ";
+		break;
+	case 2: dayText = "Wednesday ";
+		break;
+	case 3: dayText = "Thursday ";
+		break;
+	case 4: dayText = "Friday ";
+		break;
+	case 5: dayText = "Saturday ";
+		break;
+	case 6: dayText = "Sunday ";
+		break;
+	default: dayText = "BogusDay ";
+		break;
+	}
+
+	return dayText;
+}
+
+string upDate::numToMonth()
+{
+	string monthText;
+
+	switch (month)
+	{
+	case 1: monthText = "January ";
+		break;
+	case 2: monthText = "February ";
+		break;
+	case 3: monthText = "March ";
+		break;
+	case 4: monthText = "April ";
+		break;
+	case 5: monthText = "May ";
+		break;
+	case 6: monthText = "June ";
+		break;
+	case 7: monthText = "July ";
+		break;
+	case 8: monthText = "August ";
+		break;
+	case 9: monthText = "September ";
+		break;
+	case 10: monthText = "October ";
+		break;
+	case 11: monthText = "November ";
+		break;
+	case 12: monthText = "December ";
+		break;
+	default: monthText = "BogusMonth ";
+		break;
+	}
+
+	return monthText;
+}
+
+int upDate::JulianDate(int & year, int & month, int & day)
+{
+	int i = year;
+	int j = month;
+	int k = day;
+
+	int julianDate;
+
+	julianDate = k - 32075 + 1461 * (i + 4800 + (j - 14) / 12) / 4 + 367 * (j - 2 - (j - 14) / 12 * 12) / 12 - 3 * ((i + 4900 + (j - 14) / 12) / 100) / 4;
+
+	return julianDate;
+}
+
+void upDate::GregorianDate(int jD)
+{
+	int i, j, k, l, n;
+
+	l = jD + 68569;
+	n = 4 * l / 146097;
+	l = l - (146097 * n + 3) / 4;
+	i = 4000 * (l + 1) / 1461001;
+	l = l - 1461 * i / 4 + 31;
+	j = 80 * l / 2447;
+	k = l - 2447 * j / 80;
+	l = j / 11;
+	j = j + 2 - 12 * l;
+	i = 100 * (n - 49) + i + l;
+
+	year = i;
+	month = j;
+	day = k;
+}
