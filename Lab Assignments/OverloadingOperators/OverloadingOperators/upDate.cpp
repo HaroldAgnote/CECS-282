@@ -2,8 +2,8 @@
  * Name: Harold Agnote
  * Student ID: 012264497
  * Class: CECS 282 - Sec. 07
- * Project Name: (Program 2 - ADT(Date Object))
- * Due Date: (September 26, 2016)
+ * Project Name: (Program 4 - Operator Overloading)
+ * Due Date: (October 24, 2016)
  */
 #include "upDate.h"
 #include <iostream>
@@ -13,87 +13,88 @@ using namespace std;
 
 upDate::upDate()
 {
-	day = 11;
-	month = 5;
-	year = 1959;
+	dPtr = new int[3];
+	dPtr[0] = 11;
+	dPtr[1] = 5;
+	dPtr[2] = 1959;
 }
 
 upDate::upDate(int M, int D, int Y)
 {
+	dPtr = new int[3];
 	if (M > 12 || D <= 0 || D > 31)
 	{
-		day = 11;
-		month = 5;
-		year = 1959;
+		dPtr[0] = 11;
+		dPtr[1] = 5;
+		dPtr[2] = 1959;
 	}
 	else
 	{
-		day = D;
-		month = M;
-		year = Y;
+		dPtr[0] = D;
+		dPtr[1] = M;
+		dPtr[2] = Y;
 	}
+}
+
+upDate::~upDate()
+{
+	delete[] dPtr;
+	//count--;
 }
 
 void upDate::display()
 {
 	string monthText = numToMonth();
 
-	cout << monthText << day << ", " << year;
+	cout << monthText << dPtr[0] << ", " << dPtr[2];
 }
 
 void upDate::incrDate(int N)
 {
-	int julianDate = JulianDate(year, month, day);
+	int julianDate = JulianDate(dPtr);
 	julianDate += N;
 	GregorianDate(julianDate);
 }
 
 void upDate::decrDate(int N)
 {
-	int julianDate = JulianDate(year, month, day);
+	int julianDate = JulianDate(dPtr);
 	julianDate -= N;
 	GregorianDate(julianDate);
 }
 
 int upDate::daysBetween(upDate D)
 {
-	int dYear = D.getYear();
-	int dMonth = D.getMonth();
-	int dDay = D.getDay();
-
-	return D.JulianDate(dYear, dMonth, dDay) - JulianDate(year, month, day);
+	return D.JulianDate(D.dPtr) - JulianDate(dPtr);
 }
 
 int upDate::getMonth()
 {
-	return month;
+	return dPtr[1];
 }
 
 int upDate::getDay()
 {
-	return day;
+	return dPtr[0];
 }
 
 int upDate::getYear()
 {
-	return year;
+	return dPtr[2];
 }
 
 int upDate::dayOfYear()
 {
-	upDate newYears(1, 1, year);
+	upDate newYears(1, 1, dPtr[2]);
 
-	int newYearMonth = newYears.getMonth();
-	int newYearDay = newYears.getDay();
-
-	return (JulianDate(year, month, day) - JulianDate(year, newYearMonth, newYearDay)) + 1;
+	return JulianDate(dPtr) - JulianDate(newYears.dPtr) + 1;
 }
 
 string upDate::dayOfWeek()
 {
 	string dayText = "";
 
-	int julianDate = JulianDate(year, month, day);
+	int julianDate = JulianDate(dPtr);
 
 	switch (julianDate % 7)
 	{
@@ -111,7 +112,7 @@ string upDate::dayOfWeek()
 		break;
 	case 6: dayText = "Sunday ";
 		break;
-	default: dayText = "BogusDay ";
+	default: dayText = "Bogusday ";
 		break;
 	}
 
@@ -122,7 +123,7 @@ string upDate::numToMonth()
 {
 	string monthText;
 
-	switch (month)
+	switch (dPtr[1])
 	{
 	case 1: monthText = "January ";
 		break;
@@ -148,18 +149,18 @@ string upDate::numToMonth()
 		break;
 	case 12: monthText = "December ";
 		break;
-	default: monthText = "BogusMonth ";
+	default: monthText = "Bogusmonth ";
 		break;
 	}
 
 	return monthText;
 }
 
-int upDate::JulianDate(int & year, int & month, int & day)
+int upDate::JulianDate(int * dPtr)
 {
-	int i = year;
-	int j = month;
-	int k = day;
+	int i = dPtr[2];
+	int j = dPtr[1];
+	int k = dPtr[0];
 
 	int julianDate;
 
@@ -183,7 +184,7 @@ void upDate::GregorianDate(int jD)
 	j = j + 2 - 12 * l;
 	i = 100 * (n - 49) + i + l;
 
-	year = i;
-	month = j;
-	day = k;
+	dPtr[2] = i;
+	dPtr[1] = j;
+	dPtr[0] = k;
 }
