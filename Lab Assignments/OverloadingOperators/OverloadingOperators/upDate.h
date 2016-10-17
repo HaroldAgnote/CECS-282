@@ -28,9 +28,9 @@ public:
 	upDate();
 	
 	upDate(int M, int D, int Y);
-
-	~upDate();
 	
+	//~upDate();
+
 	void display();
 
 	void incrDate(int N);

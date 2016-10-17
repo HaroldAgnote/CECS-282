@@ -35,13 +35,12 @@ upDate::upDate(int M, int D, int Y)
 		dPtr[2] = Y;
 	}
 }
-
+/*
 upDate::~upDate()
 {
-	delete[] dPtr;
-	//count--;
+	delete dPtr;
 }
-
+*/
 void upDate::display()
 {
 	string monthText = numToMonth();
