@@ -41,6 +41,45 @@ upDate::~upDate()
 	delete dPtr;
 }
 */
+
+upDate upDate::operator+( int x )
+{
+	upDate temp( *this );
+	temp.incrDate( x );
+	return temp;
+}
+
+upDate upDate::operator++()
+{
+	incrDate( 1 );
+	return *this;
+}
+
+upDate upDate::operator++( int dummy )
+{
+	upDate temp( *this );
+	incrDate( 1 );
+	return temp;
+}
+
+upDate upDate::operator-( int x )
+{
+	upDate temp( *this );
+	temp.decrDate( x );
+	return temp;
+}
+
+upDate upDate::operator--()
+{
+	decrDate( 1 );
+	return *this;
+}
+
+upDate operator+(int x, upDate D)
+{
+	return D + x;
+}
+
 void upDate::display()
 {
 	string monthText = numToMonth();
@@ -186,4 +225,9 @@ void upDate::GregorianDate(int jD)
 	dPtr[2] = i;
 	dPtr[1] = j;
 	dPtr[0] = k;
+}
+
+ostream operator<<( ostream out, upDate D )
+{
+	out << D.dPtr[1] << " / " << D.dPtr[0] << " / " << D.dPtr[2];
 }

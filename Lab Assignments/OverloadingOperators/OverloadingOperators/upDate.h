@@ -31,6 +31,18 @@ public:
 	
 	//~upDate();
 
+	upDate operator+( int x );
+
+	upDate operator++();
+
+	upDate operator++( int dummy );
+
+	upDate operator-( int x );
+
+	upDate operator--();
+
+	friend upDate operator+( int, upDate D );
+
 	void display();
 
 	void incrDate(int N);
@@ -50,6 +62,10 @@ public:
 	string dayOfWeek();
 
 	string numToMonth();
+
+	boolean operator==( upDate D1, upDate D2 );
+
+	friend ostream operator<<( ostream out, upDate D );
 
 };
 
