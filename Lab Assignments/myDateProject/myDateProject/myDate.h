@@ -22,7 +22,7 @@ private:
 	
 	void GregorianDate(int JD);
 
-	int JulianDate(int & year, int & month, int & day);
+	
 
 public:
 	myDate();
@@ -48,6 +48,8 @@ public:
 	string dayOfWeek();
 
 	string numToMonth();
+
+	int JulianDate( int & year, int & month, int & day );
 
 };
 

@@ -113,7 +113,8 @@
     <ClInclude Include="upDate.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="testDate.cpp" />
+    <ClCompile Include="myTest.cpp" />
+    <ClCompile Include="testupDate.cpp" />
     <ClCompile Include="upDate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

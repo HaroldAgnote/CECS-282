@@ -11,9 +11,12 @@
 
 using namespace std;
 
+int upDate::count = 0;
+
 upDate::upDate()
 {
 	dPtr = new int[3];
+	count++;
 	dPtr[0] = 11;
 	dPtr[1] = 5;
 	dPtr[2] = 1959;
@@ -22,6 +25,7 @@ upDate::upDate()
 upDate::upDate(int M, int D, int Y)
 {
 	dPtr = new int[3];
+	count++;
 	if (M > 12 || D <= 0 || D > 31)
 	{
 		dPtr[0] = 11;
@@ -35,12 +39,22 @@ upDate::upDate(int M, int D, int Y)
 		dPtr[2] = Y;
 	}
 }
-/*
+
+upDate::upDate( const upDate & D )
+{
+	dPtr = new int[3];
+	dPtr[0] = D.dPtr[0];
+	dPtr[1] = D.dPtr[1];
+	dPtr[2] = D.dPtr[2];
+	count++;
+}
+
 upDate::~upDate()
 {
-	delete dPtr;
+	delete [] dPtr;
+	count--;
 }
-*/
+
 
 upDate upDate::operator+( int x )
 {
@@ -69,6 +83,11 @@ upDate upDate::operator-( int x )
 	return temp;
 }
 
+int upDate::operator-( upDate D )
+{
+	return D.daysBetween(*this);
+}
+
 upDate upDate::operator--()
 {
 	decrDate( 1 );
@@ -77,7 +96,16 @@ upDate upDate::operator--()
 
 upDate operator+(int x, upDate D)
 {
-	return D + x;
+	upDate temp(D);
+	temp.incrDate( x );
+	return temp;
+}
+
+void upDate::operator=( const upDate & D )
+{
+	this->dPtr[0] = D.dPtr[0];
+	this->dPtr[1] = D.dPtr[1];
+	this->dPtr[2] = D.dPtr[2];
 }
 
 void upDate::display()
@@ -89,14 +117,14 @@ void upDate::display()
 
 void upDate::incrDate(int N)
 {
-	int julianDate = JulianDate(dPtr);
+	int julianDate = julian();
 	julianDate += N;
 	GregorianDate(julianDate);
 }
 
 void upDate::decrDate(int N)
 {
-	int julianDate = JulianDate(dPtr);
+	int julianDate = julian();
 	julianDate -= N;
 	GregorianDate(julianDate);
 }
@@ -125,7 +153,12 @@ int upDate::dayOfYear()
 {
 	upDate newYears(1, 1, dPtr[2]);
 
-	return JulianDate(dPtr) - JulianDate(newYears.dPtr) + 1;
+	return (this->julian() - newYears.julian()) + 1;
+}
+
+int upDate::julian()
+{
+	return JulianDate( dPtr );
 }
 
 string upDate::dayOfWeek()
@@ -210,16 +243,16 @@ int upDate::JulianDate(int * dPtr)
 void upDate::GregorianDate(int jD)
 {
 	int i, j, k, l, n;
-
+	
 	l = jD + 68569;
 	n = 4 * l / 146097;
 	l = l - (146097 * n + 3) / 4;
 	i = 4000 * (l + 1) / 1461001;
-	l = l - 1461 * i / 4 + 31;
+	l = l - ((1461 * i) / 4) + 31;
 	j = 80 * l / 2447;
-	k = l - 2447 * j / 80;
+	k = l - (2447 * j) / 80;
 	l = j / 11;
-	j = j + 2 - 12 * l;
+	j = (j + 2) - (12 * l);
 	i = 100 * (n - 49) + i + l;
 
 	dPtr[2] = i;
@@ -227,7 +260,30 @@ void upDate::GregorianDate(int jD)
 	dPtr[0] = k;
 }
 
-ostream operator<<( ostream out, upDate D )
+bool upDate::operator==( upDate D )
+{
+	return this->julian() == D.julian();
+}
+
+bool upDate::operator>( upDate D )
+{
+	return this->JulianDate( dPtr ) > D.JulianDate( D.dPtr );
+}
+
+bool upDate::operator<( upDate D )
+{
+	return this->JulianDate( dPtr ) < D.JulianDate( D.dPtr );
+}
+
+ostream & operator<<( ostream & out, upDate D )
 {
 	out << D.dPtr[1] << " / " << D.dPtr[0] << " / " << D.dPtr[2];
+	
+	return out;
+	
+}
+
+int upDate::GetDateCount()
+{
+	return count;
 }

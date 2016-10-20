@@ -18,7 +18,7 @@ class upDate
 private:
 	int * dPtr;
 
-	//static int count;
+	static int count;
 	
 	void GregorianDate(int JD);
 
@@ -29,7 +29,9 @@ public:
 	
 	upDate(int M, int D, int Y);
 	
-	//~upDate();
+	upDate( const upDate & D );
+	
+	~upDate();
 
 	upDate operator+( int x );
 
@@ -39,9 +41,13 @@ public:
 
 	upDate operator-( int x );
 
+	int operator-( upDate D );
+
 	upDate operator--();
 
 	friend upDate operator+( int, upDate D );
+
+	void operator=( const upDate & D );
 
 	void display();
 
@@ -59,13 +65,21 @@ public:
 
 	int dayOfYear();
 
+	int julian();
+
 	string dayOfWeek();
 
 	string numToMonth();
 
-	boolean operator==( upDate D1, upDate D2 );
+	bool operator==( upDate D );
 
-	friend ostream operator<<( ostream out, upDate D );
+	bool operator>( upDate D );
+
+	bool operator<( upDate D );
+
+	friend ostream & operator<<(ostream & out, upDate D );
+
+	static int GetDateCount();
 
 };
 
