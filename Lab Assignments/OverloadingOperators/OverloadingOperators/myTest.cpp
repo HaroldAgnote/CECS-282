@@ -1,7 +1,7 @@
 #include "upDate.h"
 #include <iostream>
 using namespace std;
-
+/*
 int main()
 {
 	upDate today( 10, 24, 2016 );
@@ -19,3 +19,4 @@ int main()
 	system( "pause" );
 
 }
+*/

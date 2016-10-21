@@ -10,7 +10,7 @@
 #include "upDate.h"
 #include <iostream>
 using namespace std;
-/*
+
 int main()
 {
 	upDate Bday;
@@ -81,7 +81,3 @@ int main()
 	cin >> dummy;
 	return 0;
 }	
-
-	
-
-	*/
