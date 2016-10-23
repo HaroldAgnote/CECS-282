@@ -17,9 +17,9 @@ upDate::upDate()
 {
 	dPtr = new int[3];
 	count++;
-	dPtr[0] = 11;
-	dPtr[1] = 5;
-	dPtr[2] = 1959;
+	dPtr[0] = 11;	//Day
+	dPtr[1] = 5;	//Month
+	dPtr[2] = 1959;	//Year
 }
 
 upDate::upDate(int M, int D, int Y)
@@ -55,6 +55,12 @@ upDate::~upDate()
 	count--;
 }
 
+void upDate::operator=( const upDate & D )
+{
+	this->dPtr[0] = D.dPtr[0];
+	this->dPtr[1] = D.dPtr[1];
+	this->dPtr[2] = D.dPtr[2];
+}
 
 upDate upDate::operator+( int x )
 {
@@ -99,13 +105,6 @@ upDate operator+(int x, upDate D)
 	upDate temp(D);
 	temp.incrDate( x );
 	return temp;
-}
-
-void upDate::operator=( const upDate & D )
-{
-	this->dPtr[0] = D.dPtr[0];
-	this->dPtr[1] = D.dPtr[1];
-	this->dPtr[2] = D.dPtr[2];
 }
 
 void upDate::display()
