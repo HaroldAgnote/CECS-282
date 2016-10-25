@@ -100,6 +100,13 @@ upDate upDate::operator--()
 	return *this;
 }
 
+upDate upDate::operator--( int dummy )
+{
+	upDate temp( *this );
+	decrDate( 1 );
+	return temp;
+}
+
 upDate operator+(int x, upDate D)
 {
 	upDate temp(D);
@@ -146,6 +153,13 @@ int upDate::getDay()
 int upDate::getYear()
 {
 	return dPtr[2];
+}
+
+void upDate::setDate( int M, int D, int Y )
+{
+	dPtr[0] = D;
+	dPtr[1] = M;
+	dPtr[2] = Y;
 }
 
 int upDate::dayOfYear()

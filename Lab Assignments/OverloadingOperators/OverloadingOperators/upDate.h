@@ -45,6 +45,8 @@ public:
 
 	upDate operator--();
 
+	upDate operator--( int dummy );
+
 	friend upDate operator+( int, upDate D );
 
 	void operator=( const upDate & D );
@@ -62,6 +64,8 @@ public:
 	int getDay();
 
 	int getYear();
+
+	void setDate( int M, int D, int Y );
 
 	int dayOfYear();
 
