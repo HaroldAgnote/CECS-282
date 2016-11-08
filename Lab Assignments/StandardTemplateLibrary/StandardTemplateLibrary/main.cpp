@@ -26,8 +26,9 @@ int main()
 BigInt goldRabbits( int n )
 {
 	static map <int, BigInt> values;
-
-	if ( values.find( n ) != values.end() )	// Key found in map
+	map <int, BigInt>::iterator it;
+	it = values.find( n );
+	if ( it != values.end() )	// Key found in map
 	{
 		return values[n];
 	}

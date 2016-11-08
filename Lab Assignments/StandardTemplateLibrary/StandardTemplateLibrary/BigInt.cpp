@@ -105,7 +105,7 @@ BigInt BigInt::operator+( BigInt b)
 	}
 	return result;
 }
-
+/*
 bool BigInt::operator<( BigInt & b )
 {
 	if ( digits.size() < b.digits.size() )
@@ -133,7 +133,7 @@ bool BigInt::operator<( BigInt & b )
 	}
 	return false;
 }
-
+*/
 ostream & operator<<( ostream & out, BigInt b )
 {
 	b.clearZeroes();

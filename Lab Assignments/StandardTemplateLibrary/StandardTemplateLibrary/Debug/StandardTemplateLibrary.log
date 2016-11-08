@@ -1,5 +1,5 @@
-﻿  BigInt.cpp
-d:\documents\git\cecs-282\lab assignments\standardtemplatelibrary\standardtemplatelibrary\bigint.cpp(81): warning C4018: '>': signed/unsigned mismatch
-d:\documents\git\cecs-282\lab assignments\standardtemplatelibrary\standardtemplatelibrary\bigint.cpp(85): warning C4018: '>': signed/unsigned mismatch
+﻿  main.cpp
+d:\documents\git\cecs-282\lab assignments\standardtemplatelibrary\standardtemplatelibrary\main.cpp(13): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+d:\documents\git\cecs-282\lab assignments\standardtemplatelibrary\standardtemplatelibrary\main.cpp(16): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
   StandardTemplateLibrary.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\StandardTemplateLibrary\Debug\StandardTemplateLibrary.exe
   StandardTemplateLibrary.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\StandardTemplateLibrary\Debug\StandardTemplateLibrary.pdb (Partial PDB)
