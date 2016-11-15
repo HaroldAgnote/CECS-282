@@ -105,6 +105,63 @@ BigInt BigInt::operator+( BigInt b)
 	}
 	return result;
 }
+
+BigInt BigInt::operator-( BigInt b )
+{
+	BigInt result;
+	result.digits.clear();
+	bool borrow = false;
+	int size;
+	if ( digits.size() < b.digits.size() )
+	{
+		size = b.digits.size();
+	}
+	else
+	{
+		size = digits.size();
+	}
+	for ( int i = 0; i < size; i++ )
+	{
+		if ( ( i + 1 ) > b.digits.size() )
+		{
+			b.digits.push_back( 0 );
+		}
+		if ( ( i + 1 ) > digits.size() )
+		{
+			digits.push_back( 0 );
+		}
+		if ( borrow )
+		{
+			digits[i - 1] += 10;
+			digits[i]--;
+			borrow = false;
+		}
+		int subtract = digits[i] - b.digits[i];
+		
+		if ( subtract < 0 )
+		{
+			borrow = true;
+
+		}
+		result.digits.push_back( subtract );
+	}
+	return result;
+}
+
+bool BigInt::operator==( int n )
+{
+	BigInt b( n );
+	b.it = b.digits.begin();
+	for ( it = digits.begin(); it != digits.end(); it++ )
+	{
+		if ( *it != *b.it )
+		{
+			return false;
+		}
+		b.it++;
+	}
+	return true;
+}
 /*
 bool BigInt::operator<( BigInt & b )
 {

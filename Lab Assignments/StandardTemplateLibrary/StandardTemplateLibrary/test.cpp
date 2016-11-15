@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int msdain()
+int msain()
 {
 	while ( true )
 	{
@@ -18,7 +18,7 @@ int msdain()
 		BigInt x( xNum );
 		BigInt y( yNum );
 
-		cout << x << " + " << y << " = " << x + y << endl;
+		cout << x << " - " << y << " = " << x - y << endl;
 
 	}
 

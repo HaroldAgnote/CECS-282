@@ -31,6 +31,7 @@ public:
 	BigInt operator+( BigInt );
 	BigInt operator-( BigInt );
 
+	bool operator==( int );
 	bool operator<( BigInt &);
 
 	friend ostream & operator<<( ostream &, BigInt );
