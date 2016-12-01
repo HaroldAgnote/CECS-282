@@ -46,7 +46,9 @@ namespace MemoryManager
 
 	void initializeMemoryManager( void )
 	{
-
+		int freeHead = 0;	// starting index of the freelist
+		int inUseHead = 2;	// starting index of the inUseList - allocated memory
+		int usedHead = 4;	// starting index of the used list - deallocated memory
 	}
 
 	void * allocate( int aSize )
