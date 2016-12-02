@@ -75,4 +75,9 @@ namespace MemoryManager
 	{
 
 	}
+
+	void onOutofMemory( void )
+	{
+
+	}
 }
