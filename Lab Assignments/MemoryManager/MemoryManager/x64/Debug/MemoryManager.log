@@ -1,0 +1,11 @@
+﻿  Test.cpp
+  MemoryManagerDriver.cpp
+  MemoryManager.cpp
+d:\documents\git\cecs-282\lab assignments\memorymanager\memorymanager\memorymanager.cpp(16): warning C4554: '<<': check operator precedence for possible error; use parentheses to clarify precedence
+d:\documents\git\cecs-282\lab assignments\memorymanager\memorymanager\memorymanager.cpp(60): warning C4305: 'initializing': truncation from 'int' to 'unsigned short'
+d:\documents\git\cecs-282\lab assignments\memorymanager\memorymanager\memorymanager.cpp(60): warning C4309: 'initializing': truncation of constant value
+d:\documents\git\cecs-282\lab assignments\memorymanager\memorymanager\memorymanager.cpp(134): warning C4244: '=': conversion from '__int64' to 'unsigned short', possible loss of data
+d:\documents\git\cecs-282\lab assignments\memorymanager\memorymanager\memorymanager.cpp(137): warning C4244: '=': conversion from '__int64' to 'unsigned short', possible loss of data
+  Generating Code...
+  MemoryManager.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\MemoryManager\x64\Debug\MemoryManager.exe
+  MemoryManager.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\MemoryManager\x64\Debug\MemoryManager.pdb (Partial PDB)

@@ -117,6 +117,7 @@ int main(void)
 	cout << "\nTotal deallocations made: "<<dealloc<<endl;
 	memStats();
 
+	return 0;
 }
 
  

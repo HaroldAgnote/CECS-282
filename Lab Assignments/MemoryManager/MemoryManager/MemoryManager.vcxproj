@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="MemoryManagerDriver.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemoryManager.h" />
