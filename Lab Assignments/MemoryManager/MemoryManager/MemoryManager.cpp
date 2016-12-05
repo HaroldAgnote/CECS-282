@@ -1,3 +1,10 @@
+/*
+ * Name: Harold Agnote
+ * Student ID: 012264497
+ * Class: CECS 282 - Sec. 07
+ * Project Name: (Program 5 - Standard Template Library)
+ * Due Date: (November 14, 2016)
+ */
 #include "MemoryManager.h"
 
 #include <iomanip>
@@ -54,14 +61,13 @@ namespace MemoryManager
 		int prevLink = 4;	// offset index of the prev link
 		int dataLink = 6;	// offset index of the data
 
-		*(unsigned short *) ( MM_pool + freeHead ) = 6;
+		*(unsigned short *) ( MM_pool + freeHead ) = 6;		// First Free Space is Index 6
 		//cout << "Index: Freehead ( " << freeHead << " )" << " is now " << *(unsigned short *) ( MM_pool + freeHead ) << endl;
-		*(unsigned int *) ( MM_pool + 6 ) = MM_POOL_SIZE - 6;
-		unsigned short x = MM_POOL_SIZE - 6;
+		*(unsigned int *) ( MM_pool + 6 ) = MM_POOL_SIZE - 6;	// Total Free Space Left
 		//cout << "Total Size: " << freeMemory() << endl;
-		*(unsigned short *) ( MM_pool + inUseHead ) = 0;
+		*(unsigned short *) ( MM_pool + inUseHead ) = 0;	// First In Use Space is Index 0 (null)
 		//cout << "Index: inUseHead ( " << inUseHead << " )" << " is now " << *(unsigned short *) ( MM_pool + inUseHead ) << endl;
-		*(unsigned short *) ( MM_pool + usedHead ) = 0;
+		*(unsigned short *) ( MM_pool + usedHead ) = 0;		// First Used Space is Index 0 (null)
 		//cout << "Index: usedHead ( " << usedHead << " )" << " is now " << *(unsigned short *) ( MM_pool + usedHead ) << endl;
 
 	}
@@ -75,30 +81,29 @@ namespace MemoryManager
 		int nextLink = 2;	// offset index of the next link
 		int prevLink = 4;	// offset index of the prev link
 		int dataLink = 6;	// offset index of the data
-		if ( ( freeMemory() + dataLink + aSize ) > 0 )
+		if ( ( freeMemory() + dataLink + aSize ) > 0 )	// If there is still free space
 		{
-			*(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) ) = aSize;
+			*(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) ) = aSize;	// Set size of Node's Data Pool to aSize
 			//cout << "Assigning Size to Index:  ( " << *(unsigned short *) ( MM_pool + freeHead ) << " )" << "\nSize is now: " << *(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + freeHead ) ) ) << endl;
-			*(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink ) = *(unsigned short *) ( MM_pool + inUseHead );
+			*(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink ) = *(unsigned short *) ( MM_pool + inUseHead );	// Set Node's Next link to whatever is currently inUse
 			//cout << "Index " << *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink << " is now " << *(unsigned short *) ( MM_pool + inUseHead ) << endl;
-			*(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + prevLink ) = 0;
+			*(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + prevLink ) = 0;	// Set Node's Previous Link to Index 0 (Null) since Node is most recently allocated.
 			//cout << "Index " << *( (unsigned short *) ( MM_pool + freeHead ) ) + prevLink << " is now " << *(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + prevLink ) << endl;
-
-			if ( *(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink ) != 0 )
+			if ( *(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink ) != 0 )	// Check if there is something after this Node
 			{
-				*(unsigned short *) ( MM_pool + *(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink ) + prevLink ) = *( (unsigned short *) ( MM_pool + freeHead ) );
+				*(unsigned short *) ( MM_pool + *(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink ) + prevLink ) = *( (unsigned short *) ( MM_pool + freeHead ) );	// Set the Previous Link of the Node after this Node to point to this Node
 				//cout << "Index " << *(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) + nextLink ) + prevLink << " is now " << *( (unsigned short *) ( MM_pool + freeHead ) ) << endl;
 			}
 
-			*(unsigned short *) ( MM_pool + inUseHead ) = *(unsigned short *) ( MM_pool + freeHead );
+			*(unsigned short *) ( MM_pool + inUseHead ) = *(unsigned short *) ( MM_pool + freeHead );	// Set the inUse to point to this Node
 			//cout << "Index: inUseHead ( " << inUseHead << " )" << " is now " << *(unsigned short *) ( MM_pool + inUseHead ) << endl;
-			*(unsigned short *) ( MM_pool + freeHead ) += nextLink + prevLink + aSize;
+			*(unsigned short *) ( MM_pool + freeHead ) += nextLink + prevLink + aSize;	// Calculate the next Free Spot in the Memory Space
 			//cout << "Index: Freehead ( " << freeHead << " )" << " is now " << *(unsigned short *) ( MM_pool + freeHead ) << endl;
-			*(unsigned int *) ( MM_pool + *(unsigned short *) ( MM_pool + freeHead ) ) = MM_POOL_SIZE - *(unsigned short *) ( MM_pool + freeHead );
+			*(unsigned int *) ( MM_pool + *(unsigned short *) ( MM_pool + freeHead ) ) = MM_POOL_SIZE - *(unsigned short *) ( MM_pool + freeHead );	// Calculate the amount of free space left
 			//cout << "Total Size: " << freeMemory() << endl;
-			return ( MM_pool + *(unsigned short *) ( MM_pool + inUseHead ) + dataLink );
+			return ( MM_pool + *(unsigned short *) ( MM_pool + inUseHead ) + dataLink );	// Return this Node's Data Pool
 		}
-		else
+		else	// No more Memory
 		{
 			onOutofMemory();
 			return NULL;
@@ -117,45 +122,44 @@ namespace MemoryManager
 		int dataLink = 6;	// offset index of the data
 
 		
-		//cout << ((char*) aPointer - dataLink) - MM_pool << endl;
+		//cout << ((char*) aPointer - dataLink) - MM_pool << endl;	// Prints out the starting Index of the Node to be deallocated
 		
 		unsigned short temp = 0;
 
-		if ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) != 0)
+		if ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) != 0)	// Checks if something is after this Node
 		{
-			*(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) ) + prevLink ) = ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ));
+			*(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) ) + prevLink ) = ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ));	// Sets the previous Link of the Next Node to point to this Node's Previous Link
 		}
 
-		if ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ) != 0 )
+		if ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ) != 0 )	// Checks if something is before this Node
 		{
-			*(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ) ) + nextLink ) = ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ));
+			*(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ) ) + nextLink ) = ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ));	// Sets the Next Link of the Previous Node to point to this Node's Next Link
 		}
 		
-		if ( ( *(unsigned short *) ( MM_pool + inUseHead ) ) == ( ( ( ( (char*) aPointer - dataLink ) - MM_pool ) ) ) )
+		if ( ( *(unsigned short *) ( MM_pool + inUseHead ) ) == ( ( ( ( (char*) aPointer - dataLink ) - MM_pool ) ) ) )	// Checks if this Node is the most recently allocated Node (inUse)
 		{
-			( *(unsigned short *) ( MM_pool + inUseHead ) ) = *(unsigned short *) ( MM_pool + (*(unsigned short *) (MM_pool + inUseHead)) + nextLink );
+			( *(unsigned short *) ( MM_pool + inUseHead ) ) = *(unsigned short *) ( MM_pool + (*(unsigned short *) (MM_pool + inUseHead)) + nextLink );	// Sets the most recently allocated Node (inUse) to this Node's next link
 		}
 
-		( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ) ) = 0;
+		( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + prevLink ) ) = 0;		// Sets the previous link of this deallocated Node to 0 since it is the most recent deallocated Node
 
-		( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) ) = *(unsigned short *) ( MM_pool + usedHead );
+		( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) ) = *(unsigned short *) ( MM_pool + usedHead );	// Sets the next link of this deallocated Node to what was previously deallocated
 
-		if ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) != 0 )
+		if ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) != 0 )	// Checks if something is after this deallocated Node
 		{
-			*(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) ) + prevLink ) = ( ( (char*) aPointer - dataLink ) - MM_pool );
+			*(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + ( ( (char*) aPointer - dataLink ) - MM_pool ) + nextLink ) ) + prevLink ) = ( ( (char*) aPointer - dataLink ) - MM_pool ); // Sets the previous link of the Node after this deallocated Node to point to this deallocated Node
 		}
 
-		*(unsigned short *) ( MM_pool + usedHead ) = ( ( (char*) aPointer - dataLink ) - MM_pool );
-		//cout << "Hello!\n";
+		*(unsigned short *) ( MM_pool + usedHead ) = ( ( (char*) aPointer - dataLink ) - MM_pool );		// Updates the most recently deallocated Node (usedHead) to point to this deallocated Node
 
 	}
 
 	int freeMemory( void )
 	{
-		int size = MM_POOL_SIZE;
-		size -= usedMemory();
-		size -= inUseMemory();
-		size -= 6;
+		int size = MM_POOL_SIZE;	// Entire Size of Memory Pool
+		size -= usedMemory();		// Size = Size - deallocated (used) memory
+		size -= inUseMemory();		// Size = Size - allocated (inUse) memory
+		size -= 6;					// Size = Size - first 6 Bytes of Memory Manager
 
 		return size;
 	}
@@ -166,15 +170,15 @@ namespace MemoryManager
 		int nextLink = 2;	// offset index of the next link
 		int dataLink = 6;	// offset index of the data
 
-		unsigned short nextNode = *(unsigned short *) ( MM_pool + usedHead );
+		unsigned short nextNode = *(unsigned short *) ( MM_pool + usedHead );	// Set iterating Node to the Node that was most recently deallocated (usedHead)
 
-		int usedTotal = 0;
-		while ( nextNode != 0 )
+		int usedTotal = 0;	// Initialize sum of usedMemory
+		while ( nextNode != 0 )	// Check if the iterating Node does not point to a null location
 		{
-			usedTotal += dataLink;
-			usedTotal += *(unsigned short *) ( MM_pool + nextNode );
+			usedTotal += dataLink;	// Add the size of first six bytes containing meta information of the Node (size of data pool (2 bytes), next link (2 bytes), prev link (2 bytes) = 6 bytes total)
+			usedTotal += *(unsigned short *) ( MM_pool + nextNode );	// Add the size of this Node's data pool
 
-			nextNode = *(unsigned short *) ( MM_pool + nextNode + nextLink );
+			nextNode = *(unsigned short *) ( MM_pool + nextNode + nextLink );	// Set iterating Node to the next Node that this Node is pointing to.
 		}
 
 		return usedTotal;
@@ -186,15 +190,15 @@ namespace MemoryManager
 		int nextLink = 2;	// offset index of the next link
 		int dataLink = 6;	// offset index of the data
 
-		unsigned short nextNode = *(unsigned short * ) ( MM_pool + inUseHead );
+		unsigned short nextNode = *(unsigned short * ) ( MM_pool + inUseHead );	// Set iterating Node to the Node that was most recently allocated (inUseHead)
 
-		int inUseTotal = 0;
-		while (nextNode != 0 )
+		int inUseTotal = 0;	// Initialize sum of inUseMemory
+		while (nextNode != 0 )	// Check if the iterating Node does not point to a null location
 		{
-			inUseTotal += dataLink;
-			inUseTotal += *(unsigned short *) ( MM_pool + nextNode ) ;
+			inUseTotal += dataLink;	// Add the size of first six bytes containing meta information of the Node (size of data pool (2 bytes), next link (2 bytes), prev link (2 bytes) = 6 bytes total)
+			inUseTotal += *(unsigned short *) ( MM_pool + nextNode ) ;	// Add the size of this Node's data pool
 
-			nextNode = *(unsigned short *) ( MM_pool + nextNode + nextLink );
+			nextNode = *(unsigned short *) ( MM_pool + nextNode + nextLink );	// Set iterating Node to the next Node that this Node is pointing to.
 		}
 
 		return inUseTotal;
@@ -202,6 +206,6 @@ namespace MemoryManager
 
 	void onOutofMemory( void )
 	{
-		cout << "NO MORE MEMORY!" << endl;
+		cout << "\nNO MORE MEMORY!" << endl;
 	}
 }
