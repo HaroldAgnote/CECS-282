@@ -81,7 +81,7 @@ namespace MemoryManager
 		int nextLink = 2;	// offset index of the next link
 		int prevLink = 4;	// offset index of the prev link
 		int dataLink = 6;	// offset index of the data
-		if ( ( freeMemory() + dataLink + aSize ) > 0 )	// If there is still free space
+		if ( ( freeMemory() - (dataLink + aSize )) > 0 )	// If there is still free space
 		{
 			*(unsigned short *) ( MM_pool + *( (unsigned short *) ( MM_pool + freeHead ) ) ) = aSize;	// Set size of Node's Data Pool to aSize
 			//cout << "Assigning Size to Index:  ( " << *(unsigned short *) ( MM_pool + freeHead ) << " )" << "\nSize is now: " << *(unsigned short *) ( MM_pool + ( *(unsigned short *) ( MM_pool + freeHead ) ) ) << endl;
