@@ -46,7 +46,6 @@ int main(void)
 	alloc++;
 	char* name = (char*)allocate(11);
 	alloc++;
-
 	memStats();
 
 	*charPtr = 'A';
@@ -69,7 +68,7 @@ int main(void)
 	cout << "\nDeallocating charPtr:";
 	deallocate(charPtr);
 	dealloc++;
-	memStats();
+	memStats();	
 
 //	std::cout << "Deallacting shortPtr:";
 //	deallocate(shortPtr);
@@ -84,7 +83,6 @@ int main(void)
 	cout << "\n\nFree memory now = " << freeMemory() << endl;
 
 	cout << "\n\nTotal Memory used = " << start - freeMemory() << endl;
-
 	memStats();
 		
 	cout << endl;

@@ -1,5 +1,9 @@
-﻿  Test.cpp
-  MemoryManagerDriver.cpp
+﻿  MemoryManagerDriver.cpp
+  MemoryManager.cpp
+d:\documents\git\cecs-282\lab assignments\memorymanager\memorymanager\memorymanager.cpp(23): warning C4554: '<<': check operator precedence for possible error; use parentheses to clarify precedence
+  Generating Code...
+  Compiling...
+  Test.cpp
   Generating Code...
   MemoryManager.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\MemoryManager\Debug\MemoryManager.exe
   MemoryManager.vcxproj -> D:\Documents\git\CECS-282\Lab Assignments\MemoryManager\Debug\MemoryManager.pdb (Partial PDB)

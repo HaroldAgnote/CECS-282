@@ -1,10 +1,10 @@
 /*
-* Name: Harold Agnote
-* Student ID: 012264497
-* Class: CECS 282 - Sec. 07
-* Project Name: (Program 5 - Standard Template Library)
-* Due Date: (November 14, 2016)
-*/
+ * Name: Harold Agnote
+ * Student ID: 012264497
+ * Class: CECS 282 - Sec. 07
+ * Project Name: (Program 6 - Memory Manager)
+ * Due Date: (December 7, 2016)
+ */
 #ifndef __MEMORY_MANAGER_H__
 #define __MEMORY_MANAGER_H__
 
